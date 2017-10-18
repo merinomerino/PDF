@@ -35,14 +35,14 @@ public class Panel extends JPanel {
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                save();
+                save();
             }
         });
         open = new JMenuItem("Abrir");//Se agrega un botton tipo JMenu con en el nombre abrir al panel interno
         open.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                open();
+                open();
             }
         });
         saveAs = new JMenuItem("Guardar como");//Se agrega un botton tipo JMenu con en el nombre guardar como al panel interno
@@ -51,7 +51,7 @@ public class Panel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 rutaT = ruta;
                 ruta = null;
-//                save();
+                save();
             }
         });
         archivo.add(open);//Se agregan a la variable archivo "abrir"
@@ -59,6 +59,12 @@ public class Panel extends JPanel {
         archivo.add(saveAs);//Se agregan a la variable archivo  "guardar como"
         menu.add(archivo);//Todo lo que hay en la variable archivo se agrega al menu
         add(menu, BorderLayout.NORTH);
+    }
+
+    public void nuevo() {
+        editor = new JTextArea();
+        scroll = new JScrollPane(editor);
+        panel.add(scroll);
     }
 
 }

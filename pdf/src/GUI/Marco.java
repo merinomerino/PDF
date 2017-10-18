@@ -9,16 +9,16 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-
+//inicio de clase frame
 public class Marco extends JFrame{
    private final JDesktopPane contenedor; //Contenedor del frame interno
     private Panel[] panel = new Panel[50];//Creacion del arreglo        
     private int x = 0;                    //Variable que manejara el arreglo
     private int pos;
     private boolean v = false;     
-    private final JMenuBar menu;
-    private final JMenu archivo;
-    private final JMenuItem nuevo;
+    private final JMenuBar menu;          //Barra de la ventana
+    private final JMenu archivo;          //etiqueta
+    private final JMenuItem nuevo;        //item menu
     private JInternalFrame internal;      //Frame Interno
 
     
@@ -27,7 +27,7 @@ public class Marco extends JFrame{
         add(contenedor);
         nuevo = new JMenuItem("Nuevo");//Menu para crear una ventana nueva
         
-        //Agregar clase accionListener
+        //Inicio clase accionListener
        nuevo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -48,9 +48,10 @@ public class Marco extends JFrame{
                     internal.setName(String.valueOf(x));
                     añadirFrameInterno(panel[x]);
                 }
-                x++;
+                x++;//contador
             }
         });
+       //Termino de metodo accion
         
         archivo = new JMenu("Archivo");//Nombre de etiqueta
         archivo.add(nuevo);
@@ -58,8 +59,9 @@ public class Marco extends JFrame{
         menu.add(archivo); //Agregar el archivo a la barra
         setJMenuBar(menu);
     }
+   //inicio del frameinterno
     public void añadirFrameInterno(Panel p) {
-            internal.add(p);
+        internal.add(p);
         internal.setSize(300, 300);
         internal.setClosable(true);
         internal.setMaximizable(true);
@@ -68,5 +70,6 @@ public class Marco extends JFrame{
         internal.setVisible(true);
         contenedor.add(internal);
         
-    }
+    }//Termino  internalframe
 }
+//Termino de la clase frame

@@ -35,6 +35,14 @@ public class Marco extends JFrame{
         setJMenuBar(menu);
     }
     public void añadirFrameInterno(Panel p) {
+            internal.add(p);
+        internal.setSize(300, 300);
+        internal.setClosable(true);
+        internal.setMaximizable(true);
+        internal.setIconifiable(true);
+        internal.setMaximizable(true);
+        internal.setVisible(true);
+        contenedor.add(internal);
         
     }
 }

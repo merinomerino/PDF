@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author lokua
+ * @author Oswaldo Merino
  */
 public class Main {
 

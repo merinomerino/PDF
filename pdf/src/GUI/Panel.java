@@ -80,18 +80,41 @@ public class Panel extends JPanel {
                 JOptionPane.showMessageDialog(null, "alert", "alert", JOptionPane.ERROR_MESSAGE);
             }
         }
-        return nombre;
+        return nombre;//Retorna el nombre del pdf
     }
 
-    public String getContenido() {
-        String contenido = "";
-        FileReader fr;
-        BufferedReader br = null;
+    public void save() {//Metodo para guardar el pdf
         try {
-            fr = new FileReader(ruta);
-            br = new BufferedReader(fr);
+            elegir = new JFileChooser();//Se crea el JFileChooser para poder hacer la seleccion de archivo a abrir
+            if (ruta == null) {
+                if (elegir.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {// Si apretamos en aceptar ocurrirá esto
+                    elegir.setDialogTitle("Elegir el archivo");
+                    ruta = elegir.getSelectedFile();//Seleccina la ruta
+                    Etiquetas guardar = new Etiquetas(String.valueOf(editor.getText()),ruta);//Se guardan la etiquetas y los cambios a ellas
+                    guardar.etiquetas();//guarda etiquetas
+                    saveAs.setEnabled(true);
+                    JOptionPane.showMessageDialog(null, "Documento Guardado");//Aparece cuando se haya guardado
+                } else {//Si se guardo en la misma ruta
+                    ruta = rutaT;
+                }
+            } else if (ruta != null) {
+                Etiquetas guardar = new Etiquetas(String.valueOf(editor.getText()),ruta);
+                guardar.etiquetas();
+                JOptionPane.showMessageDialog(null, "Documento Guardado");
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    public String getContenido() {//Metodo para obtener el contenido del pdf
+        String contenido = "";
+        FileReader fr;//Lee los caracteres
+        BufferedReader br = null;//Lee el texto de una secuencia de entrada de caracteres
+        try {
+            fr = new FileReader(ruta);//Lee los caracteres la ruta
+            br = new BufferedReader(fr);//Lee el texto del archivo una vez que se obtubo la ruta
             String linea;
-            while ((linea = br.readLine()) != null) {
+            while ((linea = br.readLine()) != null) {//Empieza a obtener el texto linea por linea del pdf
                 contenido += linea + "\n";
             }
         } catch (Exception e) {
@@ -101,7 +124,7 @@ public class Panel extends JPanel {
             } catch (Exception ex) {
             }
         }
-        return contenido;
+        return contenido;//Retorna el contenido del pdf
     }
 
 }

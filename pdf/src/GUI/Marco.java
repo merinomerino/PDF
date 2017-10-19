@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JDesktopPane;
@@ -23,10 +24,11 @@ public class Marco extends JFrame{
 
     
     public Marco() {
+        super("Lector de PDF");
         contenedor = new JDesktopPane();
         add(contenedor);
         nuevo = new JMenuItem("Nuevo");//Menu para crear una ventana nueva
-        
+        nuevo.setForeground(Color.blue);
         //Inicio clase accionListener
        nuevo.addActionListener(new ActionListener() {
             @Override
@@ -54,6 +56,8 @@ public class Marco extends JFrame{
        //Termino de metodo accion
         
         archivo = new JMenu("Archivo");//Nombre de etiqueta
+        archivo.setBackground(Color.DARK_GRAY);
+        archivo.setForeground(Color.blue);
         archivo.add(nuevo);
         menu = new JMenuBar();
         menu.add(archivo); //Agregar el archivo a la barra

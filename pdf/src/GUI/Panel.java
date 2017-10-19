@@ -26,6 +26,8 @@ public class Panel extends JPanel {
 
         BorderLayout layout = new BorderLayout(10, 10);//Se crea el borderLayout con cordenadas 10,10
         archivo = new JMenu("Archivo");//Se agrega un botton tipo JMenu con en el nombre archivo al panel interno
+        archivo.setBackground(Color.DARK_GRAY);
+        archivo.setForeground(Color.WHITE);
         setLayout(layout);
         panel = new JPanel();
         panel.setLayout(new GridLayout(1, 1));

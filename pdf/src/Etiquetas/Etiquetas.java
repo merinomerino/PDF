@@ -231,12 +231,12 @@ public class Etiquetas {
                 z = true;
                
             } else if (leerEtiqueta == '{' && t.charAt(i + 1) == '#' && t.charAt(i + 2) == 'i'
-                    && t.charAt(i + 3) == '}') {
+                    && t.charAt(i + 3) == '}') {    
                 leerEtiqueta = ' ';
                 i = i + 3;
                 x += leerEtiqueta;
                 Font fuente = new Font();
-                fuente.setStyle(Font.ITALIC);
+                fuente.setStyle(Font.ITALIC);  //se indica el tipo de letra italic
                 parrafo.setFont(new Font(fuente));
                 parrafo.add(x);
                 x = "";

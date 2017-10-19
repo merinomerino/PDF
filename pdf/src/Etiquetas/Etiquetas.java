@@ -189,5 +189,100 @@ public class Etiquetas {
         }//fin de la excepcion
    
     }
+    public String etiquetasForma(String t, Paragraph parrafo) {
+        char leerEtiqueta;
+        boolean z = false;
+        String sobra = "";
+        String x = "";
+        Font font = new Font();
+        
+        for (int i = 0; i < t.length(); i++) {
+            leerEtiqueta = t.charAt(i);
+            
+            //{b} etiqueta para poner negritas 
+            if (leerEtiqueta == '{' && t.charAt(i + 1) == 'b' && t.charAt(i + 2) == '}') {
+                i = i + 3;
+                leerEtiqueta = t.charAt(i);
+                parrafo.setFont(new Font());
+                parrafo.add(sobra);
+                sobra = "";
+                z = true;
+                
+                //leer el cierre de la etiqueta 
+            } else if (leerEtiqueta == '{' && t.charAt(i + 1) == '#' && t.charAt(i + 2) == 'b'
+                    && t.charAt(i + 3) == '}') {
+                leerEtiqueta = ' ';
+                i = i + 3;
+                x += leerEtiqueta;
+                font.setStyle(Font.BOLD);
+                parrafo.setFont(new Font(font));
+                parrafo.add(x);
+                x = "";
+                z = false;
+                 //{b} fin fin de la etiqueta negreitas  
+                 
+                 //{i} etiqueta para poner la fuente itálica
+            } else if (leerEtiqueta == '{' && t.charAt(i + 1) == 'i' && t.charAt(i + 2) == '}') {
+                i = i + 3;
+                leerEtiqueta = t.charAt(i);
+                parrafo.setFont(new Font());
+                parrafo.add(sobra);
+                sobra = "";
+                z = true;
+               
+            } else if (leerEtiqueta == '{' && t.charAt(i + 1) == '#' && t.charAt(i + 2) == 'i'
+                    && t.charAt(i + 3) == '}') {
+                leerEtiqueta = ' ';
+                i = i + 3;
+                x += leerEtiqueta;
+                Font fuente = new Font();
+                fuente.setStyle(Font.ITALIC);
+                parrafo.setFont(new Font(fuente));
+                parrafo.add(x);
+                x = "";
+                z = false;
+                //cierre de la etiqueta {i}
+                
+                //{u} esta etiqueta sirve para subrayar 
+            } else if (leerEtiqueta == '{' && t.charAt(i + 1) == 'u' && t.charAt(i + 2) == '}') {
+                i = i + 3;
+                leerEtiqueta = t.charAt(i);
+                parrafo.setFont(new Font());
+                parrafo.add(sobra);
+                sobra = "";
+                z = true;
+                
+            } else if (leerEtiqueta == '{' && t.charAt(i + 1) == '#' && t.charAt(i + 2) == 'u'
+                    && t.charAt(i + 3) == '}') {
+                leerEtiqueta = ' ';
+                i = i + 3;
+                x += leerEtiqueta;
+                font.setStyle(Font.UNDERLINE);
+                parrafo.setFont(new Font(font));
+                parrafo.add(x);
+                x = "";
+                z = false;
+                //cierre de la etiqueta subrayar
+                
+                //{n}esta etiqueta hace un cambio de linea 
+            } else if (leerEtiqueta == '{' && t.charAt(i + 1) == 'n' && t.charAt(i + 2) == '}') {
+                i = i + 2;
+                leerEtiqueta = ' ';
+                if (z) {
+                    x += "\n ";
+                } else {
+                    sobra += "\n ";
+                }
+            }
+            if (z) {
+                x += leerEtiqueta;
+            } else {
+                sobra += leerEtiqueta;
+            }
+        }
+        return sobra;
+    }//llave etiquetasForma
+
+
     
 }//fin de la clase Etiquetas
